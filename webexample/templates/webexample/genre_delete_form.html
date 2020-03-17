@@ -1,0 +1,25 @@
+{% extends 'webexample/base.html' %}
+
+
+{% block title  %}
+Delete Genre "{{genre.name}}"
+{% endblock %}
+
+
+{% block content %}
+
+  <form action = "{{genre.get_delete_url}}" method="POST">
+    {% csrf_token %}
+      <div class="card" style="width: 18rem; margin-left:665px;margin-top:200px">
+      <div class="card-body">
+    <h5 class="card-title">Delete "{{genre.name}}"</h5>
+    <p class="card-text">Are you sure want to delete this genre?</p>
+    <a class="btn btn-primary" href="{% url 'genres_list_url' %}" role="button">Cancel</a>
+    <button type="submit" name = "button" class = "btn btn-danger">Delete</button>
+  </div>
+</div>
+</form>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

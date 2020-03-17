@@ -1,0 +1,30 @@
+{% extends 'webexample/base.html' %}
+
+
+{% block title  %}
+{{ book.name }}Info
+{% endblock %}
+
+
+{% block content %}
+  {% load static %}
+<div class="card mb-4" style="width: 800px; margin-left:350px; margin-top:100px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{{book.photo}}" class="card-img" alt="NO IMAGE">
+    </div>
+    <div class="col-md-8" >
+      <div class="card-body">
+        <h3 style="margin-left:175px" class="card-title">{{book.name}}</h3>
+        <h5 class="card-title">INFO:</h5>
+          <p class="card-text">{{book.info}}</p>
+      </div>
+    </div>
+  </div>
+  </div>
+  <a style="margin-left:350px" href="{{book.get_update_url}}" class="btn btn-warning btn-lg active" role="button" aria-pressed="true">Edit</a>
+  <a href="{{book.get_delete_url}}" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Delete</a>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'webexample/base.html' %}
+
+{% block title %}
+Create Book
+{% endblock %}
+
+{% block content %}
+
+
+
+<form autocomplete="off" action = "{% url 'book_create_url' %}"  method = "post">
+    {% csrf_token %}
+<div style = "width:300px; height:150px; margin-top:100px; background-color:#bdbebdy; margin-left:695px;margin-bottom:280px">
+    {% for field in form %}
+<div class = "form-group" style="width:250px; color:white;" >
+  {% if field.errors %}
+  <div class ="alert alert-danger">
+    {{ field.errors }}
+</div>
+{% endif %}
+    {{ field.label  }}
+    {{ field }}
+</div>
+    {% endfor %}
+      <button style = "margin-bottom:100px; margin-left:75px; width:85px;height:50px;" type = "submit" class="btn btn-primary">Create</button>
+</div>
+  </form>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+<!--
+  <div class="jumbotron">
+  <h1 class="display-4">Hello, world!</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+</div>
+-->

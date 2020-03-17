@@ -1,0 +1,33 @@
+{% extends 'webexample/base.html' %}
+
+{% block title %}
+Update Book {{ book.name }}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <form autocomplete="off" action = "{{genre.get_update_url}}"  method = "post">
+    {% csrf_token %}
+<div style = "width:300px; height:150px; margin-top:100px; background-color:#bdbebdy; margin-left:575px;margin-bottom:280px">
+    {% for field in form %}
+<div class = "form-group" style="width:250px; color:white;">
+  {% if field.errors %}
+  <div class ="alert alert-danger">
+    {{ field.errors }}
+</div>
+{% endif %}
+    {{ field.label  }}
+    {{ field }}
+</div>
+    {% endfor %}
+      <button type = "submit" style="margin-bottom:100px" class="btn btn-primary">Update Book</button>
+</div>
+  </form>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+<!--

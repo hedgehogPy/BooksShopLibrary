@@ -1,0 +1,28 @@
+{% extends 'webexample/base.html' %}
+
+
+{% block title  %}
+Genre Stats
+{% endblock %}
+
+
+{% block content %}
+<div style="margin-left:575px;width:170px;margin-top:20px;margin-bottom:50px" class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h4 class="card-title">Genre stats</h4>
+  </div>
+</div>
+<div style="margin-left:380px">
+{% for key, value in d.items %}
+<a style="color:white;font-size:25px">{{key}}</a>
+<div class="progress" style="width:650px;height:50px;">
+<div style="width:{{value}}%;font-size:18px" class="progress-bar progress-bar bg-warning" role="progressbar"  aria-valuenow="" aria-valuemin="0" aria-valuemax="100">{{value}}%
+</div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}
+
+
+{% block footer %}
+{% endblock %}

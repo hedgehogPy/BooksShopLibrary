@@ -1,0 +1,32 @@
+{% extends 'webexample/base.html' %}
+
+{% block title %}
+Create Genre
+{% endblock %}
+
+{% block content %}
+
+
+
+<form autocomplete="off" action = "{% url 'genre_create_url' %}"  method = "post">
+    {% csrf_token %}
+<div style = "width:300px; height:150px; margin-top:175px; background-color:#bdbebdy; margin-left:695px;margin-bottom:280px">
+    {% for field in form %}
+<div class = "form-group" style="width:250px; color:white;">
+  {% if field.errors %}
+  <div class ="alert alert-danger">
+    {{ field.errors }}
+</div>
+{% endif %}
+    {{ field.label  }}
+    {{ field }}
+</div>
+    {% endfor %}
+    <button style = "margin-bottom:100px; margin-left:75px; width:85px;height:50px;" type = "submit" class="btn btn-primary">Create</button>
+</div>
+  </form>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

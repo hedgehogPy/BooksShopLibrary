@@ -1,0 +1,24 @@
+{% extends 'webexample/base.html' %}
+
+
+{% block title  %}
+Delete Author "{{author.first_name}}""
+{% endblock %}
+
+
+{% block content %}
+  <form action = "{{author.get_delete_url}}" method="POST">
+    {% csrf_token %}
+      <div class="card" style="width: 18rem; margin-left:665px;margin-top:200px">
+      <div class="card-body">
+    <h4 class="card-title">Delete "{{author.first_name}} {{author.second_name}}"</h4>
+    <p class="card-text">Are you sure want to delete this author?</p>
+    <a class="btn btn-primary" href="{% url 'authors_list_url' %}" role="button">Cancel</a>
+    <button type="submit" name = "button" class = "btn btn-danger">Delete</button>
+  </div>
+</div>
+</form>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

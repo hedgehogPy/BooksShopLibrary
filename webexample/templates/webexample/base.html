@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="ru" dir="ltr" style="height:100%">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      {% block title %}
+      {% endblock %}
+    </title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+  <body style="background-image: url({% static "images/library.jpg" %})">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+    <a style = "margin-right:40px; font-size:23px; font-family:fantasy;" class="navbar-brand" class="badge badge-secondary" href="#">SHOP</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active" style = "margin-right:40px; font-size:23px; font-family:fantasy;">
+          <a  class="nav-link" href="{% url 'home_page_url' %}">Home</a>
+        </li>
+        <li class="nav-item active" style = "margin-right:40px; font-size:23px; font-family:fantasy;">
+          <a class="nav-link" href="{% url 'books_list_url' %}">Books</a>
+        </li>
+        <li class="nav-item active" style = "margin-right:40px; font-size:23px; font-family:fantasy;">
+          <a class="nav-link" href="{% url 'authors_list_url' %}">Authors</a>
+        </li>
+        <li class="nav-item active" style = "margin-right:40px; font-size:23px; font-family:fantasy;">
+          <a class="nav-link" href="{% url 'genres_list_url' %}">Genres</a>
+        </li>
+      </ul>
+      {% block navb %}
+
+      {% endblock %}
+      </div>
+    </nav>
+    {% block content %}
+
+    {% endblock %}
+     </header>
+      <main>
+      </main>
+  </body>
+
+  {% block footer %}
+{% endblock %}
+
+</html>

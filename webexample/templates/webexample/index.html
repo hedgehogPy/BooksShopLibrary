@@ -1,0 +1,56 @@
+{% extends 'webexample/base.html' %}
+
+
+{% block title  %}
+Book Info
+{% endblock %}
+
+{% block navb %}
+<form class="form-inline my-2 my-lg-0" action = "{% url 'books_list_url' %}">
+  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name = "search">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div>
+  <a href="{% url 'book_create_url' %}" class="btn btn-success btn-lg active" role="button" aria-pressed="true" style="height:50px;width:200px">Add New Book</a>
+  <a href="{% url 'genre_stats_url' %}" class="btn btn-warning btn-lg active" role="button" aria-pressed="true" style="height:50px;width:200px">See Genre Stats</a>
+  <a href="{% url 'author_stats_url' %}" class="btn btn-danger btn-lg active" role="button" aria-pressed="true" style="height:50px;width:200px">See Author Stats</a>
+</div>
+{% for book in books %}
+<div class="card" style="width: 18rem;width: 450px;height:750px; margin-left:560px; margin-top:50px;background-color:white">
+  <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ8NDQ0NFREWFhURFRUYHSggGBomGxUVITEhJSkrLi4uFx8zODMsNzQtLisBCgoKDg0NFQ0PFS0ZFRkrKy0rLS0rKy0tKzAtKy0tListKy0tKy0rKystLSstLSstKy0rLS0rKysrKystKysrK//AABEIALcBEwMBEQACEQEDEQH/xAAaAAADAQEBAQAAAAAAAAAAAAAAAQIDBAUH/8QAOhAAAwACAQEDCAgFAwUAAAAAAAECAxESBAUTIQYxQVFhkZLRFFJicYGTofBCY3KxwTKCgxUWI0NT/8QAGQEBAQEBAQEAAAAAAAAAAAAAAAECAwQF/8QAMREBAAICAQIDBgQHAQEAAAAAAAERAhIDE1EEIWEFMUFxkaEUFSJSMmKSsdHh8IEj/9oADAMBAAIRAxEAPwD4zo9jmeigCGUGih6KHoUHotKNFoPiWij4lKHEFHxKUOIKHEFDiEocQUXEUUOJKKLiCi0SgaJQWiUFolBaACBEBoilogRAAIiggQCIrU6snooegHooeih8SiuJVo1JSjUlWj4ilo+JaKPiWij4iihwKUOIoocQUOIKLiSkouIKJySii4gonJEouIROiBNEoLRmgtEC0QGiIWgpECIAgQUiDZI6opIoaRVUpKtGpBSlJVpXEq0akpSlJVpSkq0agpR8QUfEtLQ4FoocBRQ4CihwJSUXAUUXAhSXISi4kSkuQUXElJSXJEonJCkuSJSWiBaIidEC0RAQLRFIgRAgOhI6qpIqqUhVKSrS0irC0vYvcVpSS9XuZV8uyuK9poqDUFWlKC0UagtFHwLS0fAtFHwFFDgKKHAUUOAoouBKSkuAUTglJSXBKKS4IlJckSkuSJSXJEpDkiJckSkuSITRBLRELRBOiIWiBaIoA6kjo3S1JVpSkq0pSVqlqSlLUlapSg0tLUFWlKDVLSlBaKUoKtKUFWjUFWj4FoocBRQ4Cii4EpKJwKSicEopLglJSXBKSkOCUlJckpKQ5MpSXISkOTLNIckSkuSFJckSkuSJSXJEpLRAmiIWiCdAdyk27UtSVaWpK1S1BVpag0tLUFhqlqDS0tQaWlKCtarUGqXVSgtLqpYy0uqu7LRqfdlo1HdijUd2KNSeMUmqXBKTUnBKNUuCUzqhwRKQ4IlIcESkODLNIcESkOTKUhyRKS5IzSHJkpLkiUhyRKS5IlJckSiaIlJ0EejMG3qpooK1qtQVdVqDTWq1BWoxaTBqF1XMGmtWixmoXVaxlhrVaxmmtVrGaXVSxFXVSxFXU+6BqfdFNS7oJqTxENUvGGdUvGRNUPGRNUOCM6ocGWZxQ4Ik4s3BlnVDgiaocGWaZuSSlIcmWaS5IlIcmUpDkiUhyRKS5IlJckSk6CU9SYNPZGLSZK1S5grWrSYNW1q0mCtatJxmoajFpOM1DWrScZqGowaTjNW1GClBYldWs4jTUYNFiK1opYiroruSmg7kGhd0E0J4gmqHiDOqXiIk4s6xEZ1Z1jIzqzeMjM4s6xmWZxQ8ZmWdWdYySmqHBlnVlWMzKaocEZ1Q4MpqhwRnVDgiUzcmWaQ5IlJckSk8QlPVmS290YtJkttRi1mC21GLSYLEtxi1mDVtxi1nGatqMWk4zVtRi1nGaiWowazjNW3GK5wliV0bTiLbejWcJq10WsItdFdwWzQdyW00J4RaaJeEWmqHiFpqzrES2dWdYiWk4M6xEtnRnWIls6M6xewzbM4MqxktjRnWMzaTiyqCWzOLOoMzLM4M6gzaas3Bm2dWbgls6ocEtmcUODNszizcEtNUOSWzqjiLTV6smdnvjFpJdmohpJdmohtKLs6Ri1lGtm4xayjUZNxi2mTUZNRi1lF3bjFtEmt2oxbxBrduMW0Yy7taN4xDdrRrOEu5otYC7roHhG6aJeEu7OjOsQ2TRnWIbs6MqxjZNGdYybJoyrGTZnRlWMmzM4MqxmdmZwZVBNmdGVQZ2Z0ZVBNmZwZ1BnZnRlUr1GdknFnUk2ZnFnUmdmJxZUibMzizqSWxOLOpJbM4oaJbOqNC01cddsZP4ZhfftmHKfGZfCIZV2pnf8aX9MyGJ8VyT8WePrMsvksl7fpdN/o/ArEc3JE3GU2647b6hefhXhrTnST9fgW3ePHcsdpeh0/lFOv/ACY6T+xqk/e1oty9XH7Rxr9eM36N35SYV5oyv8JX+S3LrPtLij3Yyh+VHg9YfH+Hd7X4+Bblzn2p5TWHn82WTyozNanHEP63jX6F2lzy9qckxUYxEt+j8rMkt99jml6Hj3LXvfiXaXTi9rZRP/0xuPR7HReVfTXSmueLb0qyJKfxab1+I2l7+H2p4fPLWbx+fue/0/WYr8JuKa8/Gk9e4dV9TCcMv4ZiXdjyIdV1jB0xaJ1l0aq0OsmodovWNGdWi9Y0ZVSNdVnpsqpDqp02VUh1WemxqkTqpPGyq0Ooz02VWidROmyq0TqMzgxq0TqMzgxu0TqMTgyqkTqMzgyqkTdicIZVSM7szizq0TdicWVUibsTEM6tE3YmIZVZNmJiGdWhsxMM3ZNmJhHMbI8Hkbt8yhyQtKHMWtKVotpQeQbFDvENijWRF2gpXJes1aUOS9ZbhD5L2FuA5tLxT014pp+KYuD3ecOqe1M6e11OZP199fzH6XePFc8efUy+stf+s9Ty5fSs3Lzb76vN7x+js1+M8Te3Vyv5yrB2z1GOuUdTlT9uV0n96fg/MWdJ99Jh4zxGE7Y8k387/uq+2+otuq6rNttPwy0l4Pa8E9IsaR8IXLxniMpueXK/m9PH5Y9TMKXkxW1/Hcvk17dNI5zhx3dvfj7a8Tjjr5TPeY8/tMN8Xlren3k429Li4blb9O979pmePH4ZO+Ht3kr9fHE/K4/yufLJP/VM69l+OvcJ44/c6Y+3Ln9XH9/9G/LDDvzVr0v07M6fzOn53xX/AATQ/wC7MD9Ne4ms92vzngr3T9CflNhfmbf+1l6eST7Y8P3n6JflDifpfw18h08j824J+P2lnfb2P2v7pY0yZy9qcMev/iH25Hrr4aGmTM+0+L1+kofbMet/DXyJpLP5jx9/tKX2tL9L+GhpLP4/jn4/aWb7Un7Xw18iaSzPjuPv9pZvtOftfDXyGksT43D/AKJRXaS9Vv7pZNJZnxmPr9GVdpfZv4RpLnPjMe0ofaP2L9w0lmfFx+2UPr39S/cNGJ8V/Kl9c/qUNGfxP8qH1lfUoaJ+In9pfS39WvcNE6/o5+a/+c+5mnC/Quf8ufcUv0CyfYn4QX6Gsn2I+FA29FLN/Lx/Cgu/pB99/Lx/BIN/SB3z+pj/AC5+RU39I+hrM/VjX/HHyNJvP/Qqeor1R+XHyFrHJl6fRrjz5G/BY/xxx8hbeOed/D6OzFOdvzYfy5+RNnpwx5Zn3R9Hdj6bPv8A9P5U/Imz148HLfw+jonpM2/9WP8AJkbO0eG5L98f0tMXR5d+Nz+RCGzeHhs785j+mDrpc2/Br8uCxlJl4fkv/UOzH0t68eO/6JJtPd6ceDy86+kNZ6Z+z4JG2XduOGO32UsH3fChtl3XpY9vsHi+73IbZd16eP7WOVqfPNP+nHV/2Q2y7ueemPvx+1/2Yvqcfm8U/U8Vr/AvLu5TycXb7T/g1cvzNP8AAXPdYnjn3QmtftFue6Tr2+zOmv2h5uczh2+zOqX7THmxM4dvszdL9onmzM49mdUvV+g82JnHshter9CXLM12Q9er9CXLM12Z0LZmkPQtmaQ9EtiYhD0LZmIQxbNQjwCeTj+isW4dOSeBotpoU4W/QEjFtPSt+j9+8W3HG68XZ+14pB3x4Gr7NXqRW/w8JfZj0wz+G8kV2bWvMVmfDTTfpey234oOnH4W/e9PpuzJT2y09vH4bGJuXp4umhegmr3Y4Yw6Yxz6hq7xq3mJGrpE4rmZRdWonE2pGqTliTpF0ZnkhDyIujM8sIeRDRieWGdZENWJ5YZ1kQ1YnlhnWRDVmeVnWQmrE8rKsgpmeVlWQlMTyM6sUxPIyqyUzObOrFMTmzdkpmckOxTOzN0RnZDoM2h0RLQ2GbS2RLTsM26dI1ToOCFJ5HGNFpYiG8Si06RTaaRabjJorRab2WqQpdlKkWl2hrFpFpqM2s5i03HI0nOWm45VrqC01HKtdSKa6yvpIpesT6n2lpJ5kvqRTE8yK6gUxPKzfUBieVD6gMzys31BGeoh5wz1GdZyJ1EPMRnqM6zETdDyhndDykTdDyETdDsibIdkTZLsJsl0RLQ6IlpdBLS6IllyFJbSMlPz/wBzTUZS1VlW1KwtrWQrWy1kKuyllKbKWUq7LWYq7qWYLupZirupZyr1Fd+F6hrqCnUP6R7QdQvpATqE84TqJecJ1EPOGd0vME3Q8xGd0vME3Q8xE2S8xDZDyhNkvIRNkvIQ2S8hDZLyETYnZC08wlk7IWl0Cy5BLLZCy2EtqqK1alYWx3mvOUtSyAtXeFWzWQpZrIU2PvS2bKWUtmxrKLXY++KbH3wNj74Gw74tmw74WbF3wtNkvKLTYnlJZaXlFpZPISy0vIS0tLsWWTslllzBaXZLSy5EssnQLLkQsuQLLZCy2EGyBbAWwDYRfIrVnyBZ8gWORSz5BbHIWHyLZZ8hZZ8y2WOYsPmUscxYfMWDmLBzFhcxYOYtC5iwuZLC5CwuQtC5EsLkLByIFyAXIBbIDYC2RC2AbAWwFsA2ELYGmw0NgGwHsA2UPYBsB7KDkAbAfIWDkLByLYOQsHIWFyFg5EsHIWDkAuQC2QGwFsINgLZAtgGwFsBbANhC2AbAWwDYC2BfIinsA2A9lA6ANgPYBsA2AbANlD2FGxYNiwbFoWxYNgGyBbANgGwFsBbANgLYBsBbANkC2AbAWyg2QGyg2AEFbANgGwHsA2AbANgGyh7ANgGwDYBsA2AbANgLYBsA2AtgGwDZAtgGwFsA2AbAAEAAAAUAAAAMAIGAtgPYBsA2AbANgGwDYBsA2AbANgGwDYC2AbANgGwEAwEABQUAAEAUAAAAAAAAAMAIgAAAAAAEABQEAAAAAUAAQBQUAAAAAAAAAAAAAAAAAAAAAH//2Q==" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{book.name}}</h5>
+    <p class="card-text">Published at: {{book.date}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Age: {{book.recomAge}}</li>
+    <li class="list-group-item">Price: {{book.price}}</li>
+    <li class="list-group-item">Genres:
+      {% for genre in book.genres.all %}
+        <a class="btn btn-warning btn-lg active" role="button" aria-pressed="true" href = "{{genre.get_absolute_url}}">{{genre.name}}</a>
+      {% endfor %}
+    </li>
+    <li class="list-group-item">Authors:
+      {% for author in book.author.all %}
+        <a class="btn btn-warning btn-lg active" role="button" aria-pressed="true" href = "{{author.get_absolute_url}}">{{author.first_name}}{{ author.second_name}}</a>
+      {% endfor %}
+    </li>
+  </ul>
+  <div class="card-body">
+    <a class="btn btn-primary btn-sm active" href="{{book.get_absolute_url}}">INFO</a>
+    <a class="btn btn-danger btn-sm active" href="#">ORDER</a>
+  </div>
+</div>
+<div>
+  <a href= "{{book.get_update_url}}" class="btn btn-success btn-lg active" role="button" aria-pressed="true" style="margin-left:560px;margin-top:10px">Edit</a>
+  <a href="{{book.get_delete_url}}" class="btn btn-danger btn-lg active" role="button" aria-pressed="true" style="margin-top:10px">Delete</a>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
